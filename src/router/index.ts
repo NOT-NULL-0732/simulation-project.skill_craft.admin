@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import { UserStatusEnum, userStore } from "@/stores/user.store";
+import userRoutes from "@/router/user.route";
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -25,6 +26,7 @@ const router = createRouter({
           name: "admin-dashboard",
           component: () => import("@/views/DashboardView.vue"),
         },
+        ...userRoutes,
       ],
     },
   ],

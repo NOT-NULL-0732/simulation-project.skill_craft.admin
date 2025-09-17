@@ -1,7 +1,7 @@
 import request from "@/utils/request";
-import type { AuthApiLogin } from "@/types/api";
+import type { AuthModule } from "@/types/api";
 
-export function login(data: AuthApiLogin["data"]): AuthApiLogin["result"] {
+function login(data: AuthModule["login"]["body"]): AuthModule["login"]["result"] {
   return request({
     method: "POST",
     url: "/auth/login",
@@ -11,7 +11,16 @@ export function login(data: AuthApiLogin["data"]): AuthApiLogin["result"] {
     },
   });
 }
+
+function listUser(): AuthModule["listUser"]["result"] {
+  return request({
+    url: "/auth/user",
+    method: "GET",
+  });
+}
+
 const ApiAuth = {
   login,
+  listUser,
 };
 export default ApiAuth;

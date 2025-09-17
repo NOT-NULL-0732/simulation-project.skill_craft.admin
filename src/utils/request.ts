@@ -1,4 +1,6 @@
 import axios from "axios";
+import { userStore } from "@/stores/user.store";
+import { storeToRefs } from "pinia";
 
 axios.defaults.headers["Content-Type"] = "application/json;charset=utf-8";
 // 创建axios实例
@@ -10,6 +12,9 @@ const request = axios.create({
 });
 /* 添加默认params */
 request.interceptors.request.use(req => {
+  const useUserStore = userStore();
+  const { user } = storeToRefs(useUserStore);
+  req.headers.setAuthorization("Bearer " + user.value.user_token);
   return req;
 });
 
