@@ -52,6 +52,5 @@ const ApiAuth = {
   createUser,
   updateUser,
   deleteUser,
-  listRole,
 };
 export default ApiAuth;
