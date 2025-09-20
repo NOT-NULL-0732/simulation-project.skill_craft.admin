@@ -4,6 +4,7 @@ export interface UserInfo {
   userId: string;
   userCreatedAt: string;
   userUsername: string;
+  userEmail: string;
   role: Array<{ id: string; name: string }>;
 }
 
@@ -26,5 +27,29 @@ export interface AuthModule {
   };
   listUser: {
     result: Promise<CreateApiAllResponseEnum<UserInfo[], []>>;
+  };
+  createUser: {
+    body: {
+      email: string;
+      password: string;
+      username: string;
+    };
+    result: Promise<CreateApiAllResponseEnum<{ userId: string }, []>>;
+  };
+  updateUser: {
+    params: {
+      userId: string;
+    };
+    body: {
+      email: string;
+      password: string;
+      username: string;
+    };
+    result: Promise<CreateApiAllResponseEnum<null, []>>;
+  };
+  deleteUser: {
+    params: {
+      userId: string;
+    };
   };
 }

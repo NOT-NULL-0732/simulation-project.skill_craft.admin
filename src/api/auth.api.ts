@@ -19,8 +19,39 @@ function listUser(): AuthModule["listUser"]["result"] {
   });
 }
 
+function createUser(data: AuthModule["createUser"]["body"]): AuthModule["createUser"]["result"] {
+  return request({
+    url: "/auth/user",
+    method: "POST",
+    data,
+  });
+}
+
+function updateUser(
+  data: AuthModule["updateUser"]["body"],
+  params: AuthModule["updateUser"]["params"]
+) {
+  return request({
+    url: "/auth/user/" + params.userId,
+    method: "PATCH",
+    data,
+  });
+}
+
+function deleteUser(params: AuthModule["deleteUser"]["params"]) {
+  return request({
+    url: "/auth/user/" + params.userId,
+    method: "DELETE",
+    params,
+  });
+}
+
 const ApiAuth = {
   login,
   listUser,
+  createUser,
+  updateUser,
+  deleteUser,
+  listRole,
 };
 export default ApiAuth;
